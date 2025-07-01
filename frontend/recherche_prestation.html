@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>AlloService</title>
+  <link rel="stylesheet" href="style_recherche.css">
+</head>
+<body>
+  <div style="text-align: right; margin: 10px;">
+    <a href="accueil.php">
+      <button>accueil</button>
+    </a>
+  </div>
+
+  <h1>Recherche de prestations</h1>
+
+  <form action="http://localhost/service_platform/backend/recherche_prestation.php" method="get" target="resultats">
+    <label>Catégorie :</label>
+    <select name="categorie">
+      <option value="">-- Toutes les catégories --</option>
+      <option value="Plomberie">Plomberie</option>
+      <option value="Nettoyage">Nettoyage</option>
+      <option value="Babysitting">Babysitting</option>
+      <option value="Chauffeur privé">Chauffeur privé</option>
+    </select><br><br>
+
+    <label>Localisation :</label>
+    <input type="text" name="localisation"><br><br>
+
+    <button type="submit">Rechercher</button>
+  </form>
+
+  <h2>Résultats :</h2>
+  <iframe name="resultats" style="width: 100%; height: 600px; border: 1px solid #ccc;"></iframe>
+</body>
+</html>

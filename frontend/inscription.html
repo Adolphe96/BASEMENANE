@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>AlloService</title>
+  <link rel="stylesheet" href="inco.css">
+</head>
+<body>
+  <h1>Inscription</h1>
+
+  <form id="formulaireInscription">
+    <label>  Nom :</label><br>
+    <input type="text" name="nom" required><br>
+
+    <label>  Email :</label><br>
+    <input type="email" name="email" required><br>
+
+    <label>  Mot de passe :</label><br>
+    <input type="password" name="mot_de_passe" required><br>
+
+    <label>  role :</label><br>
+    <select name="role" required>
+      <option value="">-- Choisir un role --</option>
+      <option value="client">Client</option>
+      <option value="prestataire">Prestataire</option>
+    </select><br>
+
+    <label>  Numéro WhatsApp :</label><br>
+    <input type="text" name="whatsapp" placeholder="ex : +243899999999"><br><br>
+
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <script>
+  document.getElementById('formulaireInscription').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const donnees = Object.fromEntries(formData.entries());
+
+    const reponse = await fetch('../backend/inscription.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(donnees)
+    });
+
+    const resultat = await reponse.json();
+    alert(resultat.message);
+    
+    if (resultat.redirect) {
+      window.location.href = resultat.redirect;
+    }
+  });
+</script>
+  <p class="text-center">
+    Déjà inscrit ? <a href="connexion.html">Se connecter</a>
+  </p>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AlloService</title>
+    <link rel="stylesheet" href="style_creation.css">
+</head>
+<body>
+    <div style="text-align: right; margin: 10px;">
+      <a href="accueil.php">
+       <button>Accueil</button>
+      </a>
+   </div>
+
+    <h1>Créer une prestation</h1>
+
+    <form id="formulairePrestation">
+
+
+        <label>Titre :</label><br>
+        <input type="text" name="titre" required><br>
+
+        <label>Description :</label><br>
+        <textarea name="description" required></textarea><br>
+
+        <label>Catégorie :</label><br>
+<select name="categorie" required>
+    <option value="">-- Choisir une catégorie --</option>
+    <option value="Jardinage">Jardinage</option>
+    <option value="Bricolage">Bricolage</option>
+    <option value="Nettoyage">Nettoyage</option>
+    <option value="Plomberie">Plomberie</option>
+    <option value="Électricité">Électricité</option>
+    <option value="Déménagement">Déménagement</option>
+    <option value="Babysitting">Babysitting</option>
+    <option value="Aide aux personnes âgées">Aide aux personnes âgées</option>
+    <option value="Coiffure à domicile">Coiffure à domicile</option>
+    <option value="Esthétique / Beauté">Esthétique / Beauté</option>
+    <option value="Cours de musique">Cours de musique</option>
+    <option value="Soutien scolaire">Soutien scolaire</option>
+    <option value="Cours de langues">Cours de langues</option>
+    <option value="Réparation informatique">Réparation informatique</option>
+    <option value="Création de site internet">Création de site internet</option>
+    <option value="Graphisme / Design">Graphisme / Design</option>
+    <option value="Livraison de colis">Livraison de colis</option>
+    <option value="Chauffeur privé">Chauffeur privé</option>
+    <option value="Photographie / Vidéo">Photographie / Vidéo</option>
+    <option value="Organisation d'événements">Organisation d'événements</option>
+     <option value="autres">autres</option>
+</select><br>
+
+        <label>Prix :</label><br>
+        <input type="number" step="0.01" name="prix" required><br>
+
+        <label>Localisation :</label><br>
+        <input type="text" name="localisation" required><br><br>
+
+        <button type="submit">Créer la prestation</button>
+    </form>
+
+    <script>
+    document.getElementById('formulairePrestation').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        console.log("Formulaire envoyé");
+
+        const formData = new FormData(this);
+        const donnees = Object.fromEntries(formData.entries());
+        console.log("Données préparées :", JSON.stringify(donnees));
+
+        try {
+            const reponse = await fetch('http://localhost/service_platform/backend/creer_prestation.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(donnees)
+            });
+
+            const resultat = await reponse.json();
+            console.log("Réponse serveur :", resultat);
+            alert(resultat.message);
+
+        } catch (erreur) {
+            alert("Erreur de communication avec le serveur.");
+            console.error("Erreur FETCH :", erreur);
+        }
+    });
+</script>
+</body>
+</html>

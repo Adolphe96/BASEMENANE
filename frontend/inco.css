@@ -1,0 +1,61 @@
+/* style.css - Formulaire compact */
+
+:root {
+  --bleu: #2563eb;
+  --gris-clair: #f1f5f9;
+  --gris-fonce: #334155;
+  --blanc: #ffffff;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--gris-fonce);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin: 0.8rem 0 0.3rem;
+  font-weight: bold;
+}
+
+input, select {
+  width: 50%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background: var(--bleu);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+  }
+}

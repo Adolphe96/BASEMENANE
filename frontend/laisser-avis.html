@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Laisser un avis</title>
+</head>
+<body>
+  <h2>Laisser un avis</h2>
+
+  <form action="http://localhost/service_platform/backend/laisser_avis.php" method="post">
+    <input type="hidden" name="client_id" value="1"> <!-- à remplacer par l'utilisateur connecté -->
+    <input type="hidden" name="prestataire_id" value="2"> <!-- à remplacer dynamiquement -->
+
+    <label>Note :</label><br>
+    <select name="note" required>
+      <option value="5">⭐⭐⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="1">⭐</option>
+    </select><br><br>
+
+    <label>Commentaire :</label><br>
+    <textarea name="commentaire" rows="4" required></textarea><br><br>
+
+    <button type="submit">Envoyer l'avis</button>
+  </form>
+</body>
+</html>

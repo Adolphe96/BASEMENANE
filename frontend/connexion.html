@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AlloService</title>
+    <link rel="stylesheet" href="inco.css">
+</head>
+<body>
+    <h1>Connexion</h1>
+
+    <form id="formulaireConnexion">
+        <label>  Email :</label><br>
+        <input type="email" id="email" required><br>
+
+        <label>  Mot de passe :</label><br>
+        <input type="password" id="mot_de_passe" required><br><br>
+
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <script>
+        document.getElementById('formulaireConnexion').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const mot_de_passe = document.getElementById('mot_de_passe').value;
+
+            const donnees = {
+                email: email,
+                mot_de_passe: mot_de_passe
+            };
+
+            try {
+                const reponse = await fetch('http://localhost/service_platform/backend/connexion_utilisateur.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(donnees)
+                });
+
+                const resultat = await reponse.json();
+                alert(resultat.message);
+                if (resultat.redirect) {
+                   window.location.href = resultat.redirect;
+                 }
+            } catch (erreur) {
+                alert("Erreur lors de la connexion.");
+                console.error(erreur);
+                
+            }
+        });
+    </script>
+    <p class="text-center">
+      Pas encore de compte ? <a href="inscription.html">S’inscrire ici</a>
+    </p>
+    
+
+</body>
+</html>
